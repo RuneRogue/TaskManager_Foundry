@@ -1,66 +1,58 @@
-## Foundry
+# TaskManager Smart Contract
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repository contains a Solidity smart contract for a **Task Manager** that allows multiple users to create, update, complete, and delete their own tasks. Each task is linked to its creator, ensuring only the owner can modify it.  
 
-Foundry consists of:
+## Features
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- **Multi-user support**: Each user can have multiple tasks stored securely.  
+- **Task management**: Users can create, complete, edit, and delete tasks.  
+- **Data persistence**: Tasks are stored in a mapping, ensuring efficient lookup.  
+- **Access control**: Only task owners can modify their tasks.  
+- **Event emissions**: Smart contract emits events for each action to facilitate tracking.  
 
-## Documentation
+## Installation & Setup
 
-https://book.getfoundry.sh/
+1. **Clone the repository**  
+   ```sh
+   git clone https://github.com/RuneRogue/TaskManager_Foundry.git
+   cd TaskManager_Foundry
+   ```
 
-## Usage
+2. **Install Foundry** (if not installed)  
+   ```sh
+   curl -L https://foundry.paradigm.xyz | bash
+   foundryup
+   ```
 
-### Build
+3. **Build the smart contract**  
+   ```sh
+   forge build
+   ```
 
-```shell
-$ forge build
+## Running Tests
+
+The repository includes unit tests using Foundry. To run the tests:
+
+```sh
+forge test
 ```
 
-### Test
+### How Testing Works
 
-```shell
-$ forge test
-```
+The **TaskManagerTest** contract verifies various functionalities of the TaskManager smart contract:
 
-### Format
+- **Task Creation**: Ensures a user can create a task and retrieve its details.  
+- **Task Completion**: Checks if a task can be marked as completed.  
+- **Task Editing**: Verifies that only the task owner can update it.  
+- **Task Deletion**: Confirms that deleting a task updates the task list correctly.  
+- **Access Control**: Ensures that only the task owner can modify or delete their tasks.  
 
-```shell
-$ forge fmt
-```
+## Deploying the Smart Contract
 
-### Gas Snapshots
+1. **Set up an Ethereum test network**  
+   Use **Sepolia** or **Goerli** with Alchemy/Infura for deployment and get your RPC Url.
 
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+2. **Deploy using Foundry**  
+   ```sh
+   forge script script/TaskManager.s.sol --rpc-url $RPC_URL --broadcast --private-key $PRIVATE_KEY 
+   ```
