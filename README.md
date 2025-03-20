@@ -2,6 +2,8 @@
 
 This repository contains a Solidity smart contract for a **Task Manager** that allows multiple users to create, update, complete, and delete their own tasks. Each task is linked to its creator, ensuring only the owner can modify it.  
 
+🔗 **Deployed Smart Contract:** [Blockscout](https://eth-sepolia.blockscout.com/address/0xb7cE37102a7b41e47310cAae054C45014cEF1278)  
+
 ## Features
 
 - **Multi-user support**: Each user can have multiple tasks stored securely.  
